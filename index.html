@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{person.name}} -- {{person.age}}</h2>
+      <h3>{{person.age}}</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+      <h3 v-bind:value="msg">{{msg}}</h3>
+      <h4 v-text="msg"></h4>
+      <div v-text="person.fav"></div>
+      <div v-html="htmlStr"></div>
+      <input type="text" v-model="msg" />
+      <button v-on:click="handleClick">click</button>
+      <button @click="handleClick">@click</button>
+    </div>
+
+    <!-- <script src="./node_modules//vue/dist/vue.js"></script> -->
+    <script src="./Observer.js"></script>
+    <script src="./HXVue.js"></script>
+    <script>
+      let vm = new HXVue({
+        el: "#app",
+        data: {
+          person: {
+            name: "huxianc",
+            age: 24,
+            fav: "平安京",
+          },
+          msg: "学习MVVM实现原理",
+          htmlStr: "<h1>test h1 tag</h1>",
+        },
+        methods: {
+          handleClick() {
+            console.log("clicked", this);
+            this.$data.person.name = "dulihua";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
