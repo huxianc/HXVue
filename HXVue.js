@@ -25,6 +25,9 @@ const compileUtil = {
         return this.getVal(args[1], vm);
       });
     } else {
+      new Watcher(vm, expr, newVal => {
+        this.updater.textUpdater(node, newVal);
+      });
       value = this.getVal(expr, vm);
     }
     this.updater.textUpdater(node, value);
