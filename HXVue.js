@@ -61,6 +61,9 @@ const compileUtil = {
   bind(node, expr, vm, attrName) {
     const value = this.getVal(expr, vm);
     if (value) {
+      new Watcher(vm, expr, newVal => {
+        this.updater.bindUpdater(node, attrName, newVal);
+      });
       this.updater.bindUpdater(node, attrName, value);
     }
   },
